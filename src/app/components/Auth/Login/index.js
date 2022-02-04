@@ -1,5 +1,9 @@
 import React, { Component } from "react";
 import CancelIcon from "../../../assets/images/close-square.png";
+import { connect } from "react-redux";
+import { loginUser } from "../../../../redux/Actions/authActions";
+import { setUserLoading } from "../../../../redux/Actions/helperActions";
+import { withRouter } from "react-router-dom";
 
 class Login extends Component {
   constructor(props) {
@@ -15,6 +19,15 @@ class Login extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
+
+    const userData = {
+      email: this.state.email,
+      password: this.state.password,
+    };
+
+    this.props.loginUser(userData, this.props.history); // since we handle the redirect within our component,
+    //we don't need to pass in this.props.history as a parameter
+    this.props.setUserLoading(); // settting loading true to display the loader
     this.props.closeModal();
   };
 
@@ -87,4 +100,10 @@ class Login extends Component {
   }
 }
 
-export default Login;
+const mapStateToProps = (state) => ({
+  auth: state.auth,
+});
+
+export default connect(mapStateToProps, { loginUser, setUserLoading })(
+  withRouter(Login)
+);

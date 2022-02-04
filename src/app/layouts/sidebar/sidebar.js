@@ -1,9 +1,11 @@
 import React, { Component } from "react";
 import Arrow from "../../assets/images/arrow.svg";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import Modal from "react-bootstrap/Modal";
 import SigninModal from "../../components/Auth/Login";
 import SignupModal from "../../components/Auth/Register";
+import { connect } from "react-redux";
+import { logoutUser } from "../../../redux/Actions/authActions";
 
 class SideDrawer extends Component {
   constructor(props) {
@@ -25,6 +27,11 @@ class SideDrawer extends Component {
     this.setState({
       showSignin: true,
     });
+    this.props.closed();
+  };
+
+  handleLogout = () => {
+    this.props.logoutUser(this.props.history);
     this.props.closed();
   };
 
@@ -50,25 +57,88 @@ class SideDrawer extends Component {
               <img src={Arrow} alt="" width={7} />
             </Link>
 
-            <div
-              className="d-flex align-items-center sidebar-list"
-              onClick={this.handleRegister}
-            >
-              <p className="sidebar-list-item mb-0" style={{ paddingRight: 8 }}>
-                Register
-              </p>
-              <img src={Arrow} alt="" width={7} />
-            </div>
-
-            <div
-              className="d-flex align-items-center sidebar-list"
-              onClick={this.handleLogin}
-            >
-              <p className="sidebar-list-item mb-0" style={{ paddingRight: 8 }}>
-                Login
-              </p>
-              <img src={Arrow} alt="" width={7} />
-            </div>
+            {!this.props.auth.isAuthenticated ? (
+              <React.Fragment>
+                <div
+                  className="d-flex align-items-center sidebar-list"
+                  onClick={this.handleRegister}
+                >
+                  <p
+                    className="sidebar-list-item mb-0"
+                    style={{ paddingRight: 8 }}
+                  >
+                    Register
+                  </p>
+                  <img src={Arrow} alt="" width={7} />
+                </div>
+                <div
+                  className="d-flex align-items-center sidebar-list"
+                  onClick={this.handleLogin}
+                >
+                  <p
+                    className="sidebar-list-item mb-0"
+                    style={{ paddingRight: 8 }}
+                  >
+                    Login
+                  </p>
+                  <img src={Arrow} alt="" width={7} />
+                </div>
+              </React.Fragment>
+            ) : (
+              <React.Fragment>
+                <Link
+                  to="/events"
+                  className="d-flex align-items-center sidebar-list"
+                  onClick={this.props.closed}
+                >
+                  <p
+                    className="sidebar-list-item mb-0"
+                    style={{ paddingRight: 8 }}
+                  >
+                    Events
+                  </p>
+                  <img src={Arrow} alt="" width={7} />
+                </Link>
+                <Link
+                  to="/invites"
+                  className="d-flex align-items-center sidebar-list"
+                  onClick={this.props.closed}
+                >
+                  <p
+                    className="sidebar-list-item mb-0"
+                    style={{ paddingRight: 8 }}
+                  >
+                    Invitations
+                  </p>
+                  <img src={Arrow} alt="" width={7} />
+                </Link>
+                <Link
+                  to="/profile"
+                  className="d-flex align-items-center sidebar-list"
+                  onClick={this.props.closed}
+                >
+                  <p
+                    className="sidebar-list-item mb-0"
+                    style={{ paddingRight: 8 }}
+                  >
+                    Profile
+                  </p>
+                  <img src={Arrow} alt="" width={7} />
+                </Link>
+                <div
+                  className="d-flex align-items-center sidebar-list"
+                  onClick={this.handleLogout}
+                >
+                  <p
+                    className="sidebar-list-item mb-0"
+                    style={{ paddingRight: 8 }}
+                  >
+                    Logout
+                  </p>
+                  <img src={Arrow} alt="" width={7} />
+                </div>
+              </React.Fragment>
+            )}
 
             <div className="sidebar-back-div" onClick={this.props.closed}>
               <div className="pt-2 d-flex align-items-center">
@@ -113,4 +183,8 @@ class SideDrawer extends Component {
   }
 }
 
-export default SideDrawer;
+const mapStateToProps = (state) => ({
+  auth: state.auth,
+});
+
+export default connect(mapStateToProps, { logoutUser })(withRouter(SideDrawer));

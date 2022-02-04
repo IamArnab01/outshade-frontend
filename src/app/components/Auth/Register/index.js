@@ -1,10 +1,13 @@
 import React, { Component } from "react";
 import CancelIcon from "../../../assets/images/close-square.png";
+import { connect } from "react-redux";
+import { registerUser } from "../../../../redux/Actions/authActions";
 
 class Register extends Component {
   constructor(props) {
     super(props);
     this.initialState = {
+      name: "",
       email: "",
       password: "",
     };
@@ -15,6 +18,14 @@ class Register extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
+    const userData = {
+      name: this.state.name,
+      email: this.state.email,
+      password: this.state.password,
+    };
+
+    this.props.registerUser(userData);
+
     this.props.closeModal();
   };
 
@@ -34,6 +45,23 @@ class Register extends Component {
           Welcome! Please Sign up to create your account.
         </p>
         <form onSubmit={this.handleSubmit}>
+          <div class="row justify-content-center">
+            <div class="col-12  pb-md-4 pb-2">
+              <div className="th-auth-form-group">
+                <input
+                  type="text"
+                  className="th-auth-form-control form-control"
+                  id="validationDefault01"
+                  name="name"
+                  value={this.state.name}
+                  onChange={(e) => {
+                    this.setState({ [e.target.name]: e.target.value });
+                  }}
+                />
+                <label>Name</label>
+              </div>
+            </div>
+          </div>
           <div class="row justify-content-center">
             <div class="col-12  pb-md-4 pb-2">
               <div className="th-auth-form-group">
@@ -90,4 +118,8 @@ class Register extends Component {
   }
 }
 
-export default Register;
+const mapStateToProps = (state) => ({
+  auth: state.auth,
+});
+
+export default connect(mapStateToProps, { registerUser })(Register);

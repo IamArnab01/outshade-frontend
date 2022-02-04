@@ -1,8 +1,10 @@
 import React, { Component } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, withRouter } from "react-router-dom";
 import Modal from "react-bootstrap/Modal";
 import SigninModal from "../../components/Auth/Login";
 import SignupModal from "../../components/Auth/Register";
+import { connect } from "react-redux";
+import { logoutUser } from "../../../redux/Actions/authActions";
 
 class HeaderWeb extends Component {
   constructor(props) {
@@ -12,6 +14,10 @@ class HeaderWeb extends Component {
       showSignup: false,
     };
   }
+
+  handleLogout = () => {
+    this.props.logoutUser(this.props.history);
+  };
 
   render() {
     return (
@@ -31,19 +37,55 @@ class HeaderWeb extends Component {
                 >
                   Home
                 </NavLink>
-
-                <div
-                  className="px-4 th-header-signup-txt"
-                  onClick={() => this.setState({ showSignup: true })}
-                >
-                  <p className="m-0">Register</p>
-                </div>
-                <div
-                  className="px-4 th-header-signin-txt"
-                  onClick={() => this.setState({ showSignin: true })}
-                >
-                  <p className="m-0">Login</p>
-                </div>
+                {!this.props.auth.isAuthenticated ? (
+                  <React.Fragment>
+                    <div
+                      className="px-4 th-header-signup-txt"
+                      onClick={() => this.setState({ showSignup: true })}
+                    >
+                      <p className="m-0">Register</p>
+                    </div>
+                    <div
+                      className="px-4 th-header-signin-txt"
+                      onClick={() => this.setState({ showSignin: true })}
+                    >
+                      <p className="m-0">Login</p>
+                    </div>
+                  </React.Fragment>
+                ) : (
+                  <React.Fragment>
+                    <NavLink
+                      to="/events"
+                      exact={true}
+                      className="px-4 header-link"
+                      activeClassName="header-active-link"
+                    >
+                      Events
+                    </NavLink>
+                    <NavLink
+                      to="/invites"
+                      exact={true}
+                      className="px-4 header-link"
+                      activeClassName="header-active-link"
+                    >
+                      Invitations
+                    </NavLink>
+                    <NavLink
+                      to="/profile"
+                      exact={true}
+                      className="px-4 header-link"
+                      activeClassName="header-active-link"
+                    >
+                      Profile
+                    </NavLink>
+                    <div
+                      className="px-4 th-header-signup-txt"
+                      onClick={this.handleLogout}
+                    >
+                      <p className="m-0">Logout</p>
+                    </div>
+                  </React.Fragment>
+                )}
               </div>
             </div>
           </div>
@@ -83,4 +125,8 @@ class HeaderWeb extends Component {
   }
 }
 
-export default HeaderWeb;
+const mapStateToProps = (state) => ({
+  auth: state.auth,
+});
+
+export default connect(mapStateToProps, { logoutUser })(withRouter(HeaderWeb));
