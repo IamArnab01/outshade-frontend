@@ -14,21 +14,28 @@
 }
 
 .header-link,
-.header-link:hover {
+.header-link:hover,
+.th-header-signup-txt,
+.th-header-signin-txt {
   font-family: "Nunito Sans", sans-serif;
   font-style: normal;
   font-weight: 600;
   font-size: 18px;
   text-decoration: none !important;
+  cursor: pointer;
 }
 
-.header-link {
+.header-link,
+.th-header-signup-txt,
+.th-header-signin-txt {
   color: #341c01;
 }
 
 .header-active-link,
 .header-active-link:hover,
-.header-link:hover {
+.header-link:hover,
+.th-header-signup-txt:hover,
+.th-header-signin-txt:hover {
   color: #1c4e94 !important;
   text-decoration: none !important;
 }

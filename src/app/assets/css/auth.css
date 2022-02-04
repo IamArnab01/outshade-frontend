@@ -1,0 +1,164 @@
+.th-auth-heading {
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 48px;
+  line-height: 72px;
+  text-align: center;
+  letter-spacing: -0.02em;
+  color: #124a53;
+}
+
+.th-auth-text,
+.th-auth-text2 {
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16.5px;
+  line-height: 27px;
+  color: #999999;
+  text-align: center;
+}
+.th-auth-text2 {
+  text-align: right;
+  cursor: pointer;
+}
+
+.th-signup-btn {
+  text-decoration: none !important;
+  cursor: pointer;
+  text-align: center;
+  padding: 10px 42px;
+  box-shadow: 0px 8px 12px -5px rgba(18, 74, 83, 0.15);
+  border-radius: 6px;
+}
+
+.th-signup-btn:focus {
+  box-shadow: none !important;
+}
+
+.th-signup-btn {
+  background: #124a53;
+}
+.th-signup-btn:hover {
+  background: #227e8c;
+}
+
+.th-signup-btn span {
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16.5px;
+  line-height: 21px;
+  text-align: center;
+  letter-spacing: -0.007em;
+  color: #ffffff;
+}
+
+.th-signup-warning-txt {
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14.5px;
+  line-height: 20px;
+  color: #999999;
+}
+.th-signup-warning-txt span {
+  color: #000;
+}
+
+.th-auth-form-control:focus {
+  box-shadow: none !important;
+  border: none !important;
+}
+
+/* .th-auth-form-group {
+  display: flex;
+  flex-direction: column-reverse;
+} */
+
+/* .th-auth-form-group label {
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 27px;
+  color: #999999;
+} */
+
+.th-auth-form-control,
+.th-auth-form-control:focus {
+  transition: all 0.3s ease !important;
+  background: #ffffff;
+  border-left: 5px solid #2eabbf !important;
+  border-right: 1px solid #c1bbbb !important;
+  border-top: 1px solid #c1bbbb !important;
+  border-bottom: 1px solid #c1bbbb !important;
+  box-sizing: border-box;
+  border-radius: 6px;
+}
+
+.th-profile-btn {
+  border: 1px solid #124a53;
+  box-sizing: border-box;
+  box-shadow: 0px 8px 12px -5px rgba(18, 74, 83, 0.25);
+  border-radius: 6px;
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 21px;
+  text-align: center;
+  letter-spacing: -0.007em;
+  color: #124a53;
+  width: 25%;
+}
+
+.th-profile-btn:hover {
+  background: #f7feff;
+  border: 1px solid #124a53;
+}
+
+@media only screen and (max-width: 768px) {
+  .th-auth-text,
+  .th-auth-text2 {
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .th-auth-heading {
+    font-size: 34px;
+    line-height: 54px;
+  }
+
+  .th-auth-topic-btn {
+    font-size: 15.5px;
+  }
+
+  .th-profile-btn {
+    width: 100%;
+  }
+}
+
+/* custom css for Modals  */
+.th-auth-verify-modal-content {
+  height: 700px;
+}
+
+.th-auth-topics-modal-content {
+  height: 1020px;
+}
+
+@media only screen and (max-width: 568px) {
+  .th-auth-signup-modal-content,
+  .th-auth-signin-modal-content {
+    height: 100vh !important;
+    border-radius: 0 !important;
+    border: none !important;
+  }
+
+  .th-auth-signup-modal-dialog,
+  .th-auth-signin-modal-dialog {
+    margin: 0 !important;
+  }
+}

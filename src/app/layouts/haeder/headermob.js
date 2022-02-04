@@ -47,7 +47,7 @@ class HeaderMob extends Component {
         </div>
         <SideDrawer
           show={this.state.sideDrawerOpen}
-          clicked={this.drawerToggleClickHandler}
+          closed={this.drawerToggleClickHandler}
           Logo={this.props.Logo}
         />
         {backdrop}
