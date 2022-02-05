@@ -4,6 +4,7 @@ import { Link, withRouter } from "react-router-dom";
 import Modal from "react-bootstrap/Modal";
 import SigninModal from "../../components/Auth/Login";
 import SignupModal from "../../components/Auth/Register";
+import ChangePassModal from "../../components/Auth/Password/changePass";
 import { connect } from "react-redux";
 import { logoutUser } from "../../../redux/Actions/authActions";
 
@@ -13,6 +14,7 @@ class SideDrawer extends Component {
     this.state = {
       showSignin: false,
       showSignup: false,
+      showChangePass: false,
     };
   }
 
@@ -112,19 +114,20 @@ class SideDrawer extends Component {
                   </p>
                   <img src={Arrow} alt="" width={7} />
                 </Link>
-                <Link
-                  to="/profile"
+                <div
                   className="d-flex align-items-center sidebar-list"
-                  onClick={this.props.closed}
+                  onClick={() => {
+                    this.setState({ showChangePass: true });
+                  }}
                 >
                   <p
                     className="sidebar-list-item mb-0"
                     style={{ paddingRight: 8 }}
                   >
-                    Profile
+                    Change Password
                   </p>
                   <img src={Arrow} alt="" width={7} />
-                </Link>
+                </div>
                 <div
                   className="d-flex align-items-center sidebar-list"
                   onClick={this.handleLogout}
@@ -175,6 +178,21 @@ class SideDrawer extends Component {
           <Modal.Body>
             <SignupModal
               closeModal={() => this.setState({ showSignup: false })}
+            />
+          </Modal.Body>
+        </Modal>
+        {/* Change Password Modal */}
+        <Modal
+          show={this.state.showChangePass}
+          onHide={() => this.setState({ showChangePass: false })}
+          size="md"
+          centered
+          contentClassName="th-auth-signup-modal-content"
+          dialogClassName="th-auth-signup-modal-dialog"
+        >
+          <Modal.Body>
+            <ChangePassModal
+              closeModal={() => this.setState({ showChangePass: false })}
             />
           </Modal.Body>
         </Modal>

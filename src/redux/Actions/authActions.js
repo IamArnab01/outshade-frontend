@@ -49,7 +49,7 @@ export const loginUser = (userData, history) => (dispatch) => {
     .catch((err) => {
       dispatch(setUserLoaded());
       // error message
-      toast(err, { type: "error" });
+      toast("Invalid Credentials", { type: "error" });
     });
 };
 

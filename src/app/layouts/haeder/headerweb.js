@@ -3,6 +3,7 @@ import { NavLink, withRouter } from "react-router-dom";
 import Modal from "react-bootstrap/Modal";
 import SigninModal from "../../components/Auth/Login";
 import SignupModal from "../../components/Auth/Register";
+import ChangePassModal from "../../components/Auth/Password/changePass";
 import { connect } from "react-redux";
 import { logoutUser } from "../../../redux/Actions/authActions";
 
@@ -12,6 +13,7 @@ class HeaderWeb extends Component {
     this.state = {
       showSignin: false,
       showSignup: false,
+      showChangePass: false,
     };
   }
 
@@ -25,10 +27,10 @@ class HeaderWeb extends Component {
         <div className="header shadow-sm">
           <div className="container">
             <div className="row">
-              <div className="col-6 d-flex justify-content-between">
-                <img src={this.props.Logo} alt="" width={100} />
+              <div className="col-4 d-flex justify-content-between">
+                <img src={this.props.Logo} alt="" width={80} />
               </div>
-              <div className="col-6 d-flex align-items-center justify-content-end">
+              <div className="col-8 d-flex align-items-center justify-content-end">
                 <NavLink
                   to="/"
                   exact={true}
@@ -70,14 +72,14 @@ class HeaderWeb extends Component {
                     >
                       Invitations
                     </NavLink>
-                    <NavLink
-                      to="/profile"
-                      exact={true}
-                      className="px-4 header-link"
-                      activeClassName="header-active-link"
+                    <div
+                      className="px-4 th-header-signup-txt"
+                      onClick={() => {
+                        this.setState({ showChangePass: true });
+                      }}
                     >
-                      Profile
-                    </NavLink>
+                      <p className="m-0">Change Password</p>
+                    </div>
                     <div
                       className="px-4 th-header-signup-txt"
                       onClick={this.handleLogout}
@@ -117,6 +119,21 @@ class HeaderWeb extends Component {
           <Modal.Body>
             <SignupModal
               closeModal={() => this.setState({ showSignup: false })}
+            />
+          </Modal.Body>
+        </Modal>
+        {/* Change Password Modal */}
+        <Modal
+          show={this.state.showChangePass}
+          onHide={() => this.setState({ showChangePass: false })}
+          size="md"
+          centered
+          contentClassName="th-auth-signup-modal-content"
+          dialogClassName="th-auth-signup-modal-dialog"
+        >
+          <Modal.Body>
+            <ChangePassModal
+              closeModal={() => this.setState({ showChangePass: false })}
             />
           </Modal.Body>
         </Modal>

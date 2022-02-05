@@ -7,6 +7,9 @@ import { setCurrentUser } from "../redux/Actions/helperActions";
 import store from "../redux/store";
 
 const Home = React.lazy(() => import("../app/components/Home"));
+const ResetPassword = React.lazy(() =>
+  import("../app/components/Auth/Password/resetPass")
+);
 
 // Check for token to keep user logged in
 if (localStorage.jwtToken) {
@@ -27,6 +30,11 @@ class App extends Component {
           <Header />
           <Switch>
             <Route exact path="/" component={Home} />
+            <Route
+              exact
+              path="/user/update/password"
+              component={ResetPassword}
+            />
           </Switch>
         </Suspense>
       </div>

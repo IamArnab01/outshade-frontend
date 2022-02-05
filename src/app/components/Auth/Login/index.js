@@ -4,6 +4,8 @@ import { connect } from "react-redux";
 import { loginUser } from "../../../../redux/Actions/authActions";
 import { setUserLoading } from "../../../../redux/Actions/helperActions";
 import { withRouter } from "react-router-dom";
+import Modal from "react-bootstrap/Modal";
+import ForgotPasswordModal from "../Password/forgotPass";
 
 class Login extends Component {
   constructor(props) {
@@ -11,13 +13,14 @@ class Login extends Component {
     this.initialState = {
       email: "",
       password: "",
+      showForgotPass: false,
     };
 
     this.state = this.initialState;
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleLogin = this.handleLogin.bind(this);
   }
 
-  handleSubmit = (e) => {
+  handleLogin = (e) => {
     e.preventDefault();
 
     const userData = {
@@ -46,7 +49,7 @@ class Login extends Component {
         <p className="th-auth-text mb-md-4 mb-2">
           Welcome back! Please login to your account.
         </p>
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={this.handleLogin}>
           <div class="row justify-content-center">
             <div class="col-12 pb-md-4 pb-2">
               <div className="th-auth-form-group">
@@ -79,7 +82,12 @@ class Login extends Component {
                 />
                 <label>Password</label>
               </div>
-              <p className="th-auth-text2 mt-1 mb-2">Forgot password?</p>
+              <p
+                className="th-auth-text2 mt-1 mb-2"
+                onClick={() => this.setState({ showForgotPass: true })}
+              >
+                Forgot password?
+              </p>
             </div>
           </div>
           {/* buttons */}
@@ -95,6 +103,25 @@ class Login extends Component {
           Don't have an account?{" "}
           <span style={{ color: "#124A53", cursor: "pointer" }}>Sign up</span>
         </p>
+        {/* forgot pass modal */}
+        <Modal
+          show={this.state.showForgotPass}
+          onHide={() => this.setState({ showForgotPass: false })}
+          size="md"
+          centered
+          contentClassName="th-auth-signin-modal-content"
+          dialogClassName="th-auth-signin-modal-dialog"
+          backdrop={false}
+        >
+          <Modal.Body>
+            <ForgotPasswordModal
+              closeModal={(val) => {
+                this.setState({ showForgotPass: false });
+                if (val) this.props.closeModal();
+              }}
+            />
+          </Modal.Body>
+        </Modal>
       </React.Fragment>
     );
   }

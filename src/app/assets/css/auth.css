@@ -162,3 +162,9 @@
     margin: 0 !important;
   }
 }
+
+@media only screen and (min-width: 1020px) {
+  .th-auth-forgot-pass-box {
+    height: 472px;
+  }
+}
