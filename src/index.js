@@ -4,6 +4,7 @@ import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./app/assets/css/header.css";
 import "./app/assets/css/auth.css";
+import "./app/assets/css/home.css";
 import App from "./routes/App";
 import reportWebVitals from "./reportWebVitals";
 

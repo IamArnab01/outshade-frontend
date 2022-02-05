@@ -5,8 +5,10 @@ import jwt_decode from "jwt-decode";
 import setAuthToken from "../utils/setAuthToken";
 import { setCurrentUser } from "../redux/Actions/helperActions";
 import store from "../redux/store";
+import PrivateRoute from "./PrivateRoute";
 
 const Home = React.lazy(() => import("../app/components/Home"));
+const Events = React.lazy(() => import("../app/components/Events"));
 const ResetPassword = React.lazy(() =>
   import("../app/components/Auth/Password/resetPass")
 );
@@ -35,6 +37,7 @@ class App extends Component {
               path="/user/update/password"
               component={ResetPassword}
             />
+            <Route exact path="/events" component={Events} />
           </Switch>
         </Suspense>
       </div>

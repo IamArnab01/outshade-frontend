@@ -1,0 +1,49 @@
+.th-margin-top {
+  margin-top: 5rem;
+}
+
+@media only screen and (max-width: 768px) {
+  .th-margin-top {
+    margin-top: 3rem;
+  }
+
+  .th-events-heading {
+    text-align: center;
+  }
+}
+
+.th-event-btn,
+.th-event-btn:focus {
+  border: 1px solid #124a53;
+  box-sizing: border-box;
+  box-shadow: 0px 8px 12px -5px rgba(18, 74, 83, 0.25);
+  border-radius: 6px;
+  font-family: "Nunito sans";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16.5px;
+  text-align: center;
+  letter-spacing: -0.007em;
+  color: #124a53;
+  padding: 8px;
+  cursor: pointer;
+  box-shadow: none !important;
+}
+
+.th-event-btn:hover {
+  background: #f7feff;
+  border: 1px solid #124a53;
+}
+
+@media only screen and (max-width: 768px) {
+  .th-event-btn {
+    width: 50%;
+    padding: 6px;
+  }
+  .th-event-btn-wrap {
+    display: flex;
+    justify-content: center;
+    padding-top: 0.75rem;
+    padding-bottom: 1rem;
+  }
+}

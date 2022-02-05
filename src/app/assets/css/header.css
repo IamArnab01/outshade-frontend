@@ -1,9 +1,10 @@
 .header {
   z-index: 1000;
   top: 0;
-  background: transparent;
+  background: white;
   width: 100%;
   padding: 12px;
+  position: fixed;
 }
 
 .header-bg {
