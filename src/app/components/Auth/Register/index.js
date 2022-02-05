@@ -109,10 +109,6 @@ class Register extends Component {
             </div>
           </div>
         </form>
-        <p className=".th-auth-text .th-auth-text th-auth-text mb-0">
-          Already have an account{" "}
-          <span style={{ color: "#124A53", cursor: "pointer" }}>Sign in</span>
-        </p>
       </React.Fragment>
     );
   }

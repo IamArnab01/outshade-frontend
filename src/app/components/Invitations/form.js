@@ -101,14 +101,15 @@ class InvitationForm extends Component {
     axios
       .post(`${API}/user/invite`, formData)
       .then((res) => {
-        console.log(res.data);
         toast("User Invited", { type: "success" });
-        this.props.closeModal("true");
+        // this.props.closeModal("true");
+        this.props.closeModal();
       })
       .catch((err) => {
         // console.log(err);
         toast(err.response.data, { type: "warning" });
-        this.props.closeModal("false");
+        // this.props.closeModal("false");
+        this.props.closeModal();
       });
   };
 

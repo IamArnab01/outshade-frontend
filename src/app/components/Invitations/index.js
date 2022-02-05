@@ -8,7 +8,7 @@ class Invitations extends Component {
     super(props);
     this.state = {
       showModal: false,
-      isRefetch: false,
+      // isRefetch: false,
     };
   }
 
@@ -29,7 +29,9 @@ class Invitations extends Component {
               </p>
             </div>
           </div>
-          <TabsCard isRefetch={this.state.isRefetch} />
+          <TabsCard
+          // isRefetch={this.state.isRefetch}
+          />
         </div>
         <Modal
           show={this.state.showModal}
@@ -41,9 +43,9 @@ class Invitations extends Component {
         >
           <Modal.Body>
             <InviteModal
-              closeModal={(val) => {
+              closeModal={() => {
                 this.setState({ showModal: false });
-                if (val === "true") this.setState({ isRefetch: true });
+                // if (val == "true") this.setState({ isRefetch: true });
               }}
             />
           </Modal.Body>

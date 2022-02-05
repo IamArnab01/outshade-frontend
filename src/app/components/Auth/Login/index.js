@@ -99,10 +99,6 @@ class Login extends Component {
             </div>
           </div>
         </form>
-        <p className="th-auth-text mb-2">
-          Don't have an account?{" "}
-          <span style={{ color: "#124A53", cursor: "pointer" }}>Sign up</span>
-        </p>
         {/* forgot pass modal */}
         <Modal
           show={this.state.showForgotPass}

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import EventImage from "../../assets/images/event.jpg";
+import InviteImage1 from "../../assets/images/invite1.jpg";
+import InviteImage2 from "../../assets/images/invite2.jpeg";
 import axios from "axios";
 import { connect } from "react-redux";
 import { API } from "../../../api";
@@ -109,7 +110,7 @@ class InvitationsTab extends Component {
                       </div>
                       <div className="card-body">
                         <div className="card-title">
-                          <img src={EventImage} alt="" className="w-100" />
+                          <img src={InviteImage1} alt="" className="w-100" />
                         </div>
                         <h5 className="pt-1">
                           {" "}
@@ -170,7 +171,7 @@ class InvitationsTab extends Component {
                       </div>
                       <div className="card-body">
                         <div className="card-title">
-                          <img src={EventImage} alt="" className="w-100" />
+                          <img src={InviteImage2} alt="" className="w-100" />
                         </div>
                         <h5 className="pt-1">
                           {" "}

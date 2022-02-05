@@ -49,7 +49,7 @@ class Events extends Component {
             </div>
           </div>
           <div className="row">
-            {this.state.eventsList &&
+            {this.state.eventsList ? (
               this.state.eventsList.map((item, id) => {
                 let owner = this.props?.auth?.user?.name;
                 return (
@@ -74,7 +74,10 @@ class Events extends Component {
                     </div>
                   </div>
                 );
-              })}
+              })
+            ) : (
+              <h4>There's no event</h4>
+            )}
           </div>
         </div>
         <Modal
