@@ -3,7 +3,6 @@ import CancelIcon from "../../../assets/images/close-square.png";
 import { API } from "../../../../api";
 import axios from "axios";
 import { withRouter } from "react-router-dom";
-import Modal from "react-bootstrap/Modal";
 import { connect } from "react-redux";
 import { logoutUser } from "../../../../redux/Actions/authActions";
 import { toast } from "react-toastify";
@@ -34,14 +33,13 @@ class ResetPassword extends Component {
         .patch(`${API}/password/change`, resetData, {
           headers: {
             "content-type": "application/json",
-            authorization: `Bearer ${localStorage.getItem("jwtToken")}`,
           },
         })
         .then((res) => {
           console.log(res);
           if (res.status === 200) {
-            toast(res.data, { type: "success" });
-            this.props.logoutUser(this.props.history);
+            this.props.closeModal();
+            this.props.logoutUser(this.props.history, res.data);
           }
         })
         .catch((err) => {

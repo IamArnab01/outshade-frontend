@@ -54,7 +54,7 @@ export const loginUser = (userData, history) => (dispatch) => {
 };
 
 // Log user out
-export const logoutUser = (history) => (dispatch) => {
+export const logoutUser = (history, data) => (dispatch) => {
   // Remove token from local storage
   localStorage.removeItem("jwtToken");
   // Remove auth header for future requests
@@ -64,5 +64,9 @@ export const logoutUser = (history) => (dispatch) => {
   if (history) {
     history.push("/");
   }
-  toast("Logged out Successfully", { type: "warning" });
+  if (data) {
+    toast(data, { type: "success" });
+  } else {
+    toast("Logged out Successfully", { type: "warning" });
+  }
 };

@@ -118,6 +118,7 @@ class SideDrawer extends Component {
                   className="d-flex align-items-center sidebar-list"
                   onClick={() => {
                     this.setState({ showChangePass: true });
+                    this.props.closed();
                   }}
                 >
                   <p
