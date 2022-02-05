@@ -47,3 +47,35 @@
     padding-bottom: 1rem;
   }
 }
+
+/*  */
+.th-invites-tab-bar {
+  width: 50%;
+  padding: 10px;
+  text-align: center;
+  font-size: 25px;
+  margin-top: 2rem;
+  margin-bottom: 3.5rem;
+  background-color: #f3f3f3;
+  color: gray;
+  font-weight: 600;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.focus {
+  color: white;
+  background-color: #0065f2;
+  box-shadow: 3px 7px 8px rgba(0, 0, 0, 0.25);
+  border-radius: 8px;
+}
+
+@media only screen and (max-width: 992px) {
+  .th-invites-tab-bar {
+    padding: 10px;
+    font-size: 16px;
+    margin-bottom: 1.75rem;
+    font-weight: normal;
+    border-radius: 4px;
+  }
+}

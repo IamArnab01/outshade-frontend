@@ -9,6 +9,7 @@ import PrivateRoute from "./PrivateRoute";
 
 const Home = React.lazy(() => import("../app/components/Home"));
 const Events = React.lazy(() => import("../app/components/Events"));
+const Invitations = React.lazy(() => import("../app/components/Invitations"));
 const ResetPassword = React.lazy(() =>
   import("../app/components/Auth/Password/resetPass")
 );
@@ -38,6 +39,7 @@ class App extends Component {
               component={ResetPassword}
             />
             <Route exact path="/events" component={Events} />
+            <Route exact path="/invites" component={Invitations} />
           </Switch>
         </Suspense>
       </div>
