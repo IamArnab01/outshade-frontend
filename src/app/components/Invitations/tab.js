@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import EventImage from "../../assets/images/event.jpg";
 import axios from "axios";
+import { connect } from "react-redux";
 import { API } from "../../../api";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -17,9 +18,9 @@ class InvitationsTab extends Component {
   }
 
   componentDidMount() {
-    this.fetchGuestList({ sender: this.props.user._id, status: true });
+    this.fetchGuestList({ sender: this.props.auth?.user?._id, status: true });
     this.fetchMyInvitations({
-      invitee: this.props.user._id,
+      invitee: this.props.auth?.user?._id,
       status: true,
     });
   }
@@ -53,15 +54,16 @@ class InvitationsTab extends Component {
       message: message,
       status: false,
     };
+
     axios
-      .patch(`${API}/user/invititaion/${invite_id}`, data)
+      .patch(`${API}/user/invitation/${invite_id}`, data)
       .then((res) => {
         toast(res.data.message, {
           type: msg === "accept" ? "success" : "error",
         });
         // fetch invitations after update
         this.fetchMyInvitations({
-          invitee: this.props.user._id,
+          invitee: this.props.auth?.user?._id,
           status: true,
         });
       })
@@ -99,7 +101,6 @@ class InvitationsTab extends Component {
           <div className="row">
             {this.state.Invitations &&
               this.state.Invitations.map((item, id) => {
-                let owner = this.props?.user?.name;
                 return (
                   <div className="col-md-4 col-12 pb-4" key={id}>
                     <div className="card">
@@ -122,9 +123,6 @@ class InvitationsTab extends Component {
                         </div>
                         <div className="card-text pb-1">
                           Date: {item?.event?.date}{" "}
-                        </div>
-                        <div className="card-text text-capitalize">
-                          Host: {owner}
                         </div>
                         {/*  */}
                         <div className="row pt-2 ">
@@ -163,7 +161,7 @@ class InvitationsTab extends Component {
           <div className="row">
             {this.state.GuestList &&
               this.state.GuestList.map((item, id) => {
-                let owner = this.props?.user?.name;
+                let owner = this.props?.auth?.user?.name;
                 return (
                   <div className="col-md-4 col-12 pb-4" key={id}>
                     <div className="card">
@@ -202,4 +200,8 @@ class InvitationsTab extends Component {
   }
 }
 
-export default InvitationsTab;
+const mapStateToProps = (state) => ({
+  auth: state.auth,
+});
+
+export default connect(mapStateToProps)(InvitationsTab);

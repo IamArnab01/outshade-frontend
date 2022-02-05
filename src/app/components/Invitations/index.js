@@ -1,35 +1,16 @@
 import React, { Component } from "react";
-import { API } from "../../../api";
-import axios from "axios";
-import { connect } from "react-redux";
 import Modal from "react-bootstrap/Modal";
-import AddEventModal from "./form";
+import InviteModal from "./form";
 import TabsCard from "./tab";
 
 class Invitations extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      eventsList: [],
       showModal: false,
+      isRefetch: false,
     };
   }
-
-  componentDidMount() {
-    this.fetchEvents();
-  }
-
-  fetchEvents = (params = {}) => {
-    axios
-      .get(`${API}/event/getAll/${this.props?.auth?.user?._id}`, {
-        params: { ...params },
-      })
-      .then((res) => {
-        console.log(res.data);
-        this.setState({ eventsList: res.data });
-      })
-      .catch((err) => console.log(err));
-  };
 
   render() {
     return (
@@ -48,7 +29,7 @@ class Invitations extends Component {
               </p>
             </div>
           </div>
-          <TabsCard user={this.props?.auth?.user} />
+          <TabsCard isRefetch={this.state.isRefetch} />
         </div>
         <Modal
           show={this.state.showModal}
@@ -59,10 +40,10 @@ class Invitations extends Component {
           dialogClassName="th-auth-signin-modal-dialog"
         >
           <Modal.Body>
-            <AddEventModal
+            <InviteModal
               closeModal={(val) => {
                 this.setState({ showModal: false });
-                if (val === "true") this.fetchEvents();
+                if (val === "true") this.setState({ isRefetch: true });
               }}
             />
           </Modal.Body>
@@ -71,8 +52,5 @@ class Invitations extends Component {
     );
   }
 }
-const mapStateToProps = (state) => ({
-  auth: state.auth,
-});
 
-export default connect(mapStateToProps)(Invitations);
+export default Invitations;

@@ -72,29 +72,41 @@
   border: none !important;
 }
 
-/* .th-auth-form-group {
+.th-auth-form-group {
   display: flex;
   flex-direction: column-reverse;
-} */
+}
 
-/* .th-auth-form-group label {
+.th-auth-form-group label {
   font-family: Poppins;
   font-style: normal;
   font-weight: 500;
   font-size: 18px;
   line-height: 27px;
   color: #999999;
-} */
+}
 
 .th-auth-form-control,
-.th-auth-form-control:focus {
-  transition: all 0.3s ease !important;
+/* React Select */
+.css-yk16xz-control {
   background: #ffffff;
   border-left: 5px solid #2eabbf !important;
   border-right: 1px solid #c1bbbb !important;
   border-top: 1px solid #c1bbbb !important;
   border-bottom: 1px solid #c1bbbb !important;
   box-sizing: border-box;
+  border-radius: 6px;
+}
+
+.th-auth-form-control:focus,
+/* React Select */
+.css-1pahdxg-control {
+  border-left: 5px solid #2eabbf !important;
+  border-right: 1px solid #c1bbbb !important;
+  border-top: 1px solid #c1bbbb !important;
+  border-bottom: 1px solid #c1bbbb !important;
+  background: #ffffff;
+  box-shadow: none !important;
   border-radius: 6px;
 }
 
